@@ -1,37 +1,26 @@
 
 
 import './App.css'
-
+import About from './pages/About'
+import Home from './pages/Home'
 import Navbar from './components/Navbar'
-import ProductCard from './components/ProductCard'
-import { useState } from 'react'
-import {product}from './data'
- 
+import { BrowserRouter, Routes,Route } from "react-router";
+ import Cart from './pages/Cart';
+import NotFound from './components/NotFound';
 
 function App() {
 
- // const [products, setProduct] = useState(products)
-  console.log(product)
- 
-
-
-  return (
+  return(
     <>
-     <Navbar/>
-     <div className="container ">
-      <div className="row">
-      {
-        product.map(product=>
-          
-          <ProductCard  product={product}/> 
-      
-    
-        )
-      }
-      </div>
-       </div>
-      
-     
+    <BrowserRouter>
+    <Navbar />
+    <Routes>
+       <Route  path='/home'  element = {<Home/>}/>
+       <Route  path='/about'  element = {<About/>}/>
+       <Route  path='/cart'  element = {<Cart/>}/>
+        <Route  path='*'  element = {<NotFound/>}/>
+    </Routes>
+    </BrowserRouter>
     </>
   )
 }
